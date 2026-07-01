@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - AI Market</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/administracion.css">
+
+</head>
+
+<body>
+    <!-- Pantalla de inicio de sesión -->
+    <div id="login-screen" class="login-container">
+        <div class="login-header">
+            <i class="fas fa-lock" style="font-size: 48px; color: var(--primary); margin-bottom: 15px;"></i>
+            <h2>Panel de Administración</h2>
+            <p>Ingresa tus credenciales para continuar</p>
+        </div>
+
+        <div id="login-error" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> Usuario o contraseña incorrectos
+        </div>
+
+        <form id="login-form">
+            <div class="input-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Usuario" required>
+            </div>
+
+            <div class="input-icon">
+                <i class="fas fa-key"></i>
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <!-- Notificación -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Operación completada</span>
+    </div>
+
+    <!-- Modal para Stock Total -->
+    <div id="stock-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cubes"></i> Informe de Stock Total</h2>
+                <button class="modal-close" onclick="closeModal('stock-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="stock-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('stock-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportStockReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Productos Totales -->
+    <div id="products-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-apple-alt"></i> Todos los Productos</h2>
+                <button class="modal-close" onclick="closeModal('products-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="products-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('products-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="addNewProductFromModal()">
+                    <i class="fas fa-plus"></i> Agregar Producto
+                </button>
+                <button class="modal-btn modal-btn-success" onclick="exportProductsReport()">
+                    <i class="fas fa-file-pdf"></i> Exportar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Valor Total del Inventario -->
+    <div id="value-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-dollar-sign"></i> Valor Total del Inventario</h2>
+                <button class="modal-close" onclick="closeModal('value-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="value-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('value-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportValueReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Comentarios -->
+    <div id="comments-modal" class="dashboard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> Todos los Comentarios</h2>
+                <button class="modal-close" onclick="closeModal('comments-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="comments-modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('comments-modal')">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button class="modal-btn modal-btn-danger" onclick="deleteAllComments()">
+                    <i class="fas fa-trash"></i> Eliminar Todos
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="exportCommentsReport()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de administración -->
+    <div id="admin-panel" class="admin-container hidden">
+
+        <!-- Sidebar -->
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="sidebar">
+            <div class="brand">
+                <i class="fas fa-store"></i>
+                <h1>AI Market</h1>
+            </div>
+
+            <div class="nav-links">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Productos</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Categorías</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pedidos</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Estadísticas</span>
+                </div>
+                <div class="nav-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <!-- DASHBOARD -->
+            <div id="section-dashboard">
+                <div class="header">
+                    <div class="welcome">
+                        <h2>Bienvenido, Administrador</h2>
+                        <p>Gestiona tu supermercado inteligente desde este panel</p>
+                    </div>
+                    <div class="user-info">
+                        <span>admin@aimarket.com</span>
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-cards">
+                    <div class="card clickable-card" id="dashboard-products-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Productos Totales</div>
+                        <div class="card-value" id="total-products">0</div>
+                        <button class="mini-report-btn"
+                            onclick="openModal('products-modal'); event.stopPropagation();">Ver informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <!-- <span>+0 desde el mes pasado</span> -->
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                    </div>
+                    <div class="card clickable-card" id="dashboard-stock-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Stock Total</div>
+                        <div class="card-value" id="total-stock">0</div>
+                        <button class="mini-report-btn" onclick="openModal('stock-modal'); event.stopPropagation();">Ver
+                            informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <!-- <span>+0 desde el mes pasado</span> -->
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                    </div>
+                    <div class="card clickable-card" id="dashboard-value-card">
+                        <div class="shine-effect"></div>
+                        <div class="card-title">Valor Total del Inventario</div>
+                        <div class="card-value" id="total-value">S/ 0.00</div>
+                        <button class="mini-report-btn" onclick="openModal('value-modal'); event.stopPropagation();">Ver
+                            informe</button>
+                        <div class="card-info">
+                            <i class="fas fa-arrow-up"></i>
+                            <!-- <span>+0% desde el mes pasado</span> -->
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sección de detalles de productos -->
+                <div id="section-dashboard-products" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Productos</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="products-detail-grid" id="products-detail-grid">
+                            <!-- Los productos se mostrarán aquí con imágenes -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de detalles de stock -->
+                <div id="section-dashboard-stock" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Stock</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="stock-detail-table" id="stock-detail-table">
+                            <!-- La tabla de stock se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de detalles de valor -->
+                <div id="section-dashboard-value" style="display:none">
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h3>Detalles de Valor del Inventario</h3>
+                            <button class="btn btn-secondary" onclick="showDashboard()">
+                                <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                            </button>
+                        </div>
+                        <div class="value-detail-table" id="value-detail-table">
+                            <!-- La tabla de valores se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRODUCTOS -->
+            <div id="section-productos" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestionar Productos</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary" id="add-product-btn" onclick="mover()">
+                                <i class="fas fa-plus"></i> Nuevo Producto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-list" id="product-list">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3 id="form-title">Agregar Nuevo Producto</h3>
+                    </div>
+                    <form id="product-form" onsubmit="return false;">
+                        <input type="hidden" id="product-id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-name">Nombre del Producto*</label>
+                                <input type="text" id="product-name" placeholder="Ej: Manzanas Rojas, Leche Entera"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Precio (S/)</label>
+                                <input type="number" id="product-price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Stock</label>
+                                <input type="number" id="product-stock" min="0" value="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-brand">Marca</label>
+                                <input type="text" id="product-brand" placeholder="Ej: Gloria, Bimbo">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-image">URL de Imagen</label>
+                                <input type="text" id="product-image" placeholder="https://ejemplo.com/imagen.jpg">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-type">Categoría*</label>
+                                <select id="product-type" required>
+                                    <option value="">Seleccione...</option>
+                                    <!-- Las categorías se cargarán dinámicamente desde la API -->
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-diet">Dieta</label>
+                                <select id="product-diet">
+                                    <option value="">Seleccione...</option>
+                                    <option value="vegano">Vegano</option>
+                                    <option value="vegetariana">Vegetariana</option>
+                                    <option value="sin_gluten">Sin Gluten</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-material">Información Nutricional/Composición</label>
+                                <input type="text" id="product-material"
+                                    placeholder="Ej: 100% Jugo Natural, Sin Conservantes">
+                            </div>
+                        </div>
+                        <button type="button" id="save-product-btn" class="btn btn-primary"
+                            onclick="handleSaveProduct()">
+                            <i class="fas fa-save"></i> Guardar Producto
+                        </button>
+                    </form>
+                </div>
+                <div class="admin-section info-section">
+                    <!-- Eliminado: ayuda de productos -->
+                </div>
+            </div>
+            <!-- CATEGORÍAS -->
+            <div id="section-categorias" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestionar Categorías</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-warning" onclick="limpiarDatosAntiguos()"
+                                title="Limpiar datos antiguos de ropa">
+                                <i class="fas fa-trash"></i> Limpiar Datos Antiguos
+                            </button>
+                        </div>
+                    </div>
+                    <div class="category-list" id="category-list">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3 id="category-form-title">Agregar Nueva Categoría</h3>
+                    </div>
+                    <form id="category-form" onsubmit="return false;">
+                        <input type="hidden" id="category-id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category-name">Nombre de la Categoría*</label>
+                                <input type="text" id="category-name"
+                                    placeholder="Ej: Frutas, Verduras, Carnes, Lácteos" required>
+                                <small class="help-text">El slug se generará automáticamente a partir del nombre</small>
+                            </div>
+                        </div>
+                        <button type="button" id="btn-save-category" class="btn btn-primary"
+                            onclick="handleSaveCategory()">
+                            <i class="fas fa-save"></i> Guardar Categoría
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- PEDIDOS -->
+            <div id="section-pedidos" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Gestión de Pedidos</h3>
+                        <button class="btn btn-primary" onclick="actualizarPedidos()">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+
+                    <!-- Filtros de pedidos -->
+                    <div class="pedidos-filtros">
+                        <button class="filtro-btn active" onclick="filtrarPedidos('todos')">Todos</button>
+                        <button class="filtro-btn" onclick="filtrarPedidos('pendiente')">Pendientes</button>
+                        <button class="filtro-btn" onclick="filtrarPedidos('completado')">Completados</button>
+                        <button class="filtro-btn" onclick="filtrarPedidos('cancelado')">Cancelados</button>
+                    </div>
+
+                    <!-- Tabla de pedidos -->
+                    <div class="pedidos-container">
+                        <table class="admin-table" id="pedidos-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Productos</th>
+                                    <th>Total</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pedidos-body">
+                                <!-- Los pedidos se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mensaje cuando no hay pedidos -->
+                    <div id="no-pedidos" class="empty-state" style="display: none;">
+                        <h3>No hay pedidos disponibles</h3>
+                        <p>Los pedidos aparecerán aquí cuando los clientes realicen compras.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ESTADÍSTICAS -->
+            <div id="section-estadisticas" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Estadísticas de AI Market</h3>
+                        <button class="btn btn-primary" onclick="actualizarEstadisticas()">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+
+                    <!-- Tarjetas de resumen -->
+                    <div class="estadisticas-grid">
+                        <div class="estadistica-card">
+                            <i class="fas fa-shopping-cart icono"></i>
+                            <div class="valor" id="total-ventas">S/ 0.00</div>
+                            <div class="label">Ventas Totales</div>
+                        </div>
+                        <div class="estadistica-card">
+                            <i class="fas fa-apple-alt icono"></i>
+                            <div class="valor" id="productos-activos">0</div>
+                            <div class="label">Productos Activos</div>
+                        </div>
+                        <div class="estadistica-card">
+                            <i class="fas fa-users icono"></i>
+                            <div class="valor" id="clientes-totales">0</div>
+                            <div class="label">Clientes</div>
+                        </div>
+                        <div class="estadistica-card">
+                            <i class="fas fa-box icono"></i>
+                            <div class="valor" id="inventario-valor">S/ 0.00</div>
+                            <div class="label">Valor Inventario</div>
+                        </div>
+                    </div>
+
+                    <!-- Gráficos -->
+                    <div class="charts-container">
+                        <div class="chart-section">
+                            <h3>Productos por Categoría</h3>
+                            <div class="pie-chart-container">
+                                <div id="categoria-chart" class="chart-placeholder">
+                                    <p>Gráfico de productos por categoría</p>
+                                </div>
+                                <div class="chart-legend" id="categoria-legend">
+                                    <!-- Leyenda se generará dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-section">
+                            <h3>Ventas por Mes</h3>
+                            <div class="bar-chart-container">
+                                <div id="ventas-chart" class="chart-placeholder">
+                                    <p>Gráfico de ventas mensuales</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de productos más vendidos ELIMINADA POR SOLICITUD DEL USUARIO -->
+                    <!-- <div class="stats-table-container"> ... </div> -->
+                </div>
+            </div>
+            <!-- AJUSTES -->
+            <div id="section-ajustes" style="display:none">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Ajustes</h3>
+                    </div>
+                    <div class="info-section">
+                        <p>Configura las opciones de tu tienda:</p>
+                        <ul>
+                            <li>Modificar datos de la tienda.</li>
+                            <li>Cambiar contraseña de administrador.</li>
+                            <li>Personalizar notificaciones y preferencias.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación flotante -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Producto guardado exitosamente!</span>
+    </div>
+
+    <!-- Botón flotante -->
+    <div class="floating-btn" id="floating-btn">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/administracion.js"></script>
+
+
+</body>
+
+</html>

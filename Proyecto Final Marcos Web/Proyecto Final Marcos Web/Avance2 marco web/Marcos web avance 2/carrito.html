@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Market - Mi Carrito</title>
+
+    <!-- Enlaces a librerías externas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <link href="css/carrito.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- =========================================== -->
+    <!-- NAVBAR PRINCIPAL -->
+    <!-- =========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
+        <div class="container">
+            <!-- Logo de la e127.0.0.1:5500 dice
+
+Error al procesar la compra: 'int' object is not subscriptable
+
+Por favor, intente nuevamente.mpresa -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="d-inline-block bg-white text-success rounded-circle logo-circle">AI</span>
+                <span class="fw-bold text-white">AI Market</span>
+            </a>
+
+            <!-- Botones de navegación (solo visible en desktop) -->
+            <div class="d-none d-lg-flex ms-3 gap-2">
+                <a class="btn btn-outline-light btn-sm" href="catalogo.html">Catálogo</a>
+                <a class="btn btn-light btn-sm" href="canasta.html">Compras rápida</a>
+            </div>
+
+            <!-- Botón hamburguesa para móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-label="Menú de navegación" title="Menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Contenido colapsable del navbar -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Formulario de búsqueda -->
+                <form id="search-form" class="d-flex mx-lg-auto my-2 my-lg-0 w-100 search-form" role="search">
+                    <input id="search-input" class="form-control form-control-sm me-2" type="search"
+                        placeholder="Buscar productos">
+                    <button class="btn btn-success btn-sm" type="submit">Buscar</button>
+                </form>
+
+                <!-- Iconos de usuario y carrito -->
+                <div class="d-flex align-items-center ms-lg-3 mt-2 mt-lg-0 gap-3">
+                    <a href="administracion.html" class="text-white text-decoration-none"
+                        title="Panel de Administración"><i class="bi bi-person-circle fs-4"></i></a>
+                    <a href="carrito.html" class="text-white text-decoration-none position-relative"
+                        title="Ver Carrito">
+                        <i class="bi bi-cart3 fs-4"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================== -->
+    <!-- CONTENIDO PRINCIPAL DEL CARRITO -->
+    <!-- =========================================== -->
+    <main class="container py-5 flex-grow-1">
+        <!-- Vista cuando hay productos en el carrito -->
+        <div id="cart-view" style="display: none;">
+            <div class="text-center mb-4">
+                <h1 class="h2">Mi Carrito de Compras</h1>
+            </div>
+            <div class="row g-5">
+                <!-- =========================================== -->
+                <!-- COLUMNA DE PRODUCTOS EN EL CARRITO -->
+                <!-- =========================================== -->
+                <div class="col-lg-8">
+                    <!-- Contenedor donde se renderizan los productos del carrito -->
+                    <div id="cart-items-container">
+                        <!-- Los items del carrito se renderizan aquí mediante JavaScript -->
+                    </div>
+                </div>
+
+                <!-- =========================================== -->
+                <!-- COLUMNA DE RESUMEN Y CHECKOUT -->
+                <!-- =========================================== -->
+                <div class="col-lg-4">
+                    <!-- Tarjeta de resumen del pedido -->
+                    <div class="card shadow-sm sticky-top" style="top: 100px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Resumen del Pedido</h5>
+
+                            <!-- Lista de totales -->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Subtotal</span>
+                                    <span id="cart-subtotal">S/ 0.00</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Envío</span>
+                                    <span>S/ 5.00</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between fw-bold fs-5">
+                                    <span>Total</span>
+                                    <span id="cart-total">S/ 5.00</span>
+                                </li>
+                            </ul>
+
+                            <!-- Botones de acción -->
+                            <div class="d-grid gap-2 mt-4">
+                                <button id="btn-proceder-pago" class="btn btn-success btn-lg" disabled>Proceder al
+                                    Pago</button>
+                                <a href="catalogo.html" class="btn btn-outline-secondary">Seguir Comprando</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- VISTA DE CARRITO VACÍO -->
+        <!-- =========================================== -->
+        <div id="empty-cart-view" class="text-center" style="display: none;">
+            <div class="py-5">
+                <i class="bi bi-cart-x" style="font-size: 5rem; color: #6c757d;"></i>
+                <h2 class="mt-4">Tu carrito está vacío</h2>
+                <p class="text-muted">Parece que aún no has añadido ningún producto.</p>
+                <a href="catalogo.html" class="btn btn-primary mt-3">Ir al Catálogo</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Pago -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="paymentModalLabel">Detalles de Pago</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="payment-form">
+                        <div class="mb-3">
+                            <label for="card-name" class="form-label">Nombre en la Tarjeta</label>
+                            <input type="text" class="form-control" id="card-name"
+                                placeholder="Como aparece en la tarjeta" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="card-number" class="form-label">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="card-number" placeholder="0000 0000 0000 0000"
+                                maxlength="19" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="card-expiry" class="form-label">Fecha de Expiración</label>
+                                <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY"
+                                    maxlength="5" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="card-cvc" class="form-label">CVC</label>
+                                <input type="text" class="form-control" id="card-cvc" placeholder="123" maxlength="3"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="alert alert-info small">
+                            <i class="bi bi-shield-lock"></i> Tus datos están protegidos. Esta es una simulación de
+                            pago.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success w-100" id="btn-confirm-payment">Pagar S/ <span
+                            id="modal-total-amount">0.00</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================== -->
+    <!-- FOOTER -->
+    <!-- =========================================== -->
+    <footer class="bg-dark text-white mt-auto">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2"><span
+                            class="d-inline-block bg-white text-success rounded-circle"
+                            style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">AI</span>
+                        AI Market</h5>
+                    <p class="text-white-50 small">Tu supermercado inteligente. Ahorra tiempo y dinero con nuestras
+                        herramientas de compra y las mejores ofertas del mercado.</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Enlaces Rápidos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white-50 text-decoration-none">Catálogo</a>
+                        </li>
+                        <li class="mb-2"><a href="canasta.html" class="text-white-50 text-decoration-none">Compras
+                                Rápida</a></li>
+                        <li class="mb-2"><a href="carrito.html" class="text-white-50 text-decoration-none">Mi
+                                Carrito</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Ayuda y Soporte</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Políticas de Envío</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Términos y
+                                Condiciones</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Síguenos</h6>
+                    <div class="d-flex gap-2"><a href="#" class="footer-social-icon"><i
+                                class="bi bi-facebook"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-instagram"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-twitter-x"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-tiktok"></i></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-black bg-opacity-25 py-3">
+            <div class="container text-center text-white-50 small">&copy; 2025 AI Market. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/carrito.js"></script>
+</body>
+
+</html>

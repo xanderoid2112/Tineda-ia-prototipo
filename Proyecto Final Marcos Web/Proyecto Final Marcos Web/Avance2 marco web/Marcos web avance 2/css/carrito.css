@@ -1,0 +1,107 @@
+/* =========================================== */
+/* CONFIGURACIÓN BASE */
+/* =========================================== */
+
+/* Variables CSS */
+:root { --ai-green: #28a745; }
+
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+/* Tipografía base */
+body { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; background-color: #ffffff; letter-spacing: .1px; }
+h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: .2px; }
+.navbar .navbar-brand { font-weight: 800; letter-spacing: .3px; }
+
+/* =========================================== */
+/* NAVBAR */
+/* =========================================== */
+.navbar { background-color: #28a745; }
+.navbar .navbar-brand { color: #ffffff !important; }
+.navbar .nav-link, .navbar .btn-outline-success { color: #ffffff; border: none; background: transparent; }
+.navbar .btn-outline-success:hover { background-color: rgba(255,255,255,0.15); color: #ffffff; }
+.navbar .btn.btn-success { background-color: #1f8c39; border-color: #1f8c39; }
+.navbar .form-control { background-color: #ffffff; color: #212529; border-radius: 10px; }
+.navbar .btn { border-radius: 10px; }
+.navbar .btn, .navbar .form-control { height: 34px; padding-top: .25rem; padding-bottom: .25rem; }
+.navbar .btn-sm, .navbar .form-control-sm { height: 32px; }
+
+/* Logo de la empresa */
+.navbar-brand .logo-circle {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+/* Formulario de búsqueda */
+.navbar .search-form {
+    max-width: 600px;
+}
+
+/* =========================================== */
+/* FOOTER */
+/* =========================================== */
+footer { background-color: #28a745 !important; color: #ffffff !important; border-top: 1px solid rgba(255,255,255,0.25); }
+footer h6 { color: #ffffff; }
+footer .text-white-50 { color: rgba(255,255,255,0.85) !important; }
+footer a { color: #ffffff !important; opacity: 0.95; }
+footer a:hover { opacity: 1; text-decoration: underline; }
+
+/* Iconos sociales del footer */
+.footer-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.1);
+    color: #ffffff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-social-icon:hover {
+    background-color: var(--ai-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* =========================================== */
+/* ESTILOS ESPECÍFICOS DEL CARRITO */
+/* =========================================== */
+
+/* Imágenes de productos en el carrito */
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Input de cantidad */
+.quantity-input {
+    width: 60px;
+    text-align: center;
+}
+
+/* Oculta las flechas en el input de tipo number */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Tarjetas del carrito */
+.card {
+    border-radius: 14px;
+    border: 1px solid #e6f3ea;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}

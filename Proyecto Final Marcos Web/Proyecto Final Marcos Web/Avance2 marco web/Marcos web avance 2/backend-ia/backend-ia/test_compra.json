@@ -1,0 +1,15 @@
+{
+    "usuario_id": 1,
+    "items": [
+        {
+            "producto_id": 1,
+            "nombre": "Manzana",
+            "precio_unitario": 1.50,
+            "cantidad": 2,
+            "subtotal": 3.00
+        }
+    ],
+    "subtotal": 3.00,
+    "costo_envio": 5.00,
+    "total": 8.00
+}

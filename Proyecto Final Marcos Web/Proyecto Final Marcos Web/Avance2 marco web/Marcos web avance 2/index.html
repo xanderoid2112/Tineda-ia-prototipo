@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Market - Inicio</title>
+
+    <!-- Enlaces a librerías externas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <link href="css/index.css" rel="stylesheet">
+
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- =========================================== -->
+    <!-- NAVBAR PRINCIPAL -->
+    <!-- =========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
+        <div class="container">
+            <!-- Logo de la empresa -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="d-inline-block bg-white text-success rounded-circle logo-circle">AI</span>
+                <span class="fw-bold text-white">AI Market</span>
+            </a>
+
+            <!-- Botones de navegación (solo visible en desktop) -->
+            <div class="d-none d-lg-flex ms-3 gap-2">
+                <a class="btn btn-outline-light btn-sm" href="catalogo.html">Catálogo</a>
+                <a class="btn btn-light btn-sm" href="canasta.html">Compras rápida</a>
+            </div>
+
+            <!-- Botón hamburguesa para móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-label="Menú de navegación" title="Menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Contenido colapsable del navbar -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Formulario de búsqueda -->
+                <form id="search-form" class="d-flex mx-lg-auto my-2 my-lg-0 w-100 search-form" role="search">
+                    <input id="search-input" class="form-control form-control-sm me-2" type="search"
+                        placeholder="Buscar productos">
+                    <button class="btn btn-success btn-sm" type="submit">Buscar</button>
+                </form>
+
+                <!-- Iconos de usuario y carrito -->
+                <div class="d-flex align-items-center ms-lg-3 mt-2 mt-lg-0 gap-3">
+                    <!-- Botones de Autenticación -->
+
+
+                    <!-- Link Admin (Siempre visible) -->
+                    <a href="administracion.html" id="admin-link" class="text-white text-decoration-none"
+                        title="Panel de Administración"><i class="bi bi-person-circle fs-4"></i></a>
+
+                    <a href="carrito.html" class="text-white text-decoration-none position-relative"
+                        title="Ver Carrito">
+                        <i class="bi bi-cart3 fs-4"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================== -->
+    <!-- CARRUSEL HERO -->
+    <!-- =========================================== -->
+    <section id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicadores del carrusel -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Contenido del carrusel -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active hero-banner"
+                style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="container h-100 d-flex align-items-center justify-content-center position-relative">
+                    <div class="text-center text-white">
+                        <h1 class="display-4 fw-bold mb-3">Bienvenido a AI Market</h1>
+                        <p class="lead mb-4">Tu supermercado inteligente. Encuentra todo lo que necesitas, más rápido y
+                            al mejor precio.</p>
+                        <a href="catalogo.html" class="btn btn-success btn-lg">Explorar Catálogo</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item hero-banner"
+                style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=2070&auto=format&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="container h-100 d-flex align-items-center justify-content-center position-relative">
+                    <div class="text-center text-white">
+                        <h1 class="display-4 fw-bold mb-3">Ofertas Frescas Cada Día</h1>
+                        <p class="lead mb-4">Descubre nuestras promociones diarias en frutas, verduras y carnes de la
+                            mejor calidad.</p>
+                        <a href="catalogo.html?category=frutas-verduras" class="btn btn-outline-light btn-lg">Ver
+                            Frescos</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item hero-banner"
+                style="background-image: url('https://images.unsplash.com/photo-1601599561213-832382fd07ba?q=80&w=2070&auto=format&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="container h-100 d-flex align-items-center justify-content-center position-relative">
+                    <div class="text-center text-white">
+                        <h1 class="display-4 fw-bold mb-3">Compra Rápida e Inteligente</h1>
+                        <p class="lead mb-4">Usa nuestra herramienta de compra rápida para generar tu canasta en
+                            segundos.</p>
+                        <a href="canasta.html" class="btn btn-success btn-lg">Probar Compra Rápida</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </section>
+
+    <!-- =========================================== -->
+    <!-- SECCIÓN DE PRODUCTOS DESTACADOS -->
+    <!-- =========================================== -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5 text-success">Productos Recientes</h2>
+            <div id="featured-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================== -->
+    <!-- FOOTER -->
+    <!-- =========================================== -->
+    <footer class="bg-dark text-white mt-auto">
+        <div class="container py-5">
+            <div class="row g-4">
+                <!-- Información de la empresa -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2"><span
+                            class="d-inline-block bg-white text-success rounded-circle"
+                            style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">AI</span>
+                        AI Market</h5>
+                    <p class="text-white-50 small">Tu supermercado inteligente. Ahorra tiempo y dinero con nuestras
+                        herramientas de compra y las mejores ofertas del mercado.</p>
+                </div>
+
+                <!-- Enlaces de navegación -->
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Enlaces Rápidos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white-50 text-decoration-none">Catálogo</a>
+                        </li>
+                        <li class="mb-2"><a href="canasta.html" class="text-white-50 text-decoration-none">Compras
+                                Rápida</a></li>
+                        <li class="mb-2"><a href="carrito.html" class="text-white-50 text-decoration-none">Mi
+                                Carrito</a></li>
+                    </ul>
+                </div>
+
+                <!-- Ayuda y soporte -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Ayuda y Soporte</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Políticas de Envío</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Términos y
+                                Condiciones</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes sociales -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Síguenos</h6>
+                    <div class="d-flex gap-2"><a href="#" class="footer-social-icon"><i
+                                class="bi bi-facebook"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-instagram"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-twitter-x"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-tiktok"></i></a></div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="bg-black bg-opacity-25 py-3">
+            <div class="container text-center text-white-50 small">&copy; 2025 AI Market. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================== -->
+    <!-- SCRIPTS -->
+    <!-- =========================================== -->
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ===========================================
+            // VARIABLES Y ESTADO
+            // ===========================================
+            const API_BASE_URL = 'http://localhost:3000';
+            let cart = JSON.parse(localStorage.getItem('aiMarketCart')) || [];
+            let allProducts = []; // Almacén de productos cargados desde API
+
+            // ===========================================
+            // ELEMENTOS DEL DOM
+            // ===========================================
+            const cartCountBadge = document.getElementById('cart-count');
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+
+
+            // ===========================================
+            // LÓGICA DE AUTENTICACIÓN (NAVBAR)
+            // ===========================================
+            const token = localStorage.getItem('token');
+            const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+            const adminLink = document.getElementById('admin-link');
+            const authButtons = document.getElementById('auth-buttons');
+
+
+
+            // offerButtons se seleccionarán dinámicamente después de cargar
+
+            // ===========================================
+            // FUNCIONES PRINCIPALES
+            // ===========================================
+
+            /**
+             * Carga los productos destacados (recientes) desde la API
+             */
+            async function loadFeaturedProducts() {
+                const container = document.getElementById('featured-products-container');
+                if (!container) return;
+
+                try {
+
+                    const response = await fetch(`${API_BASE_URL}/productos/recientes?limit=4`);
+                    if (!response.ok) throw new Error('Error al cargar productos');
+                    const data = await response.json();
+
+                    // Normalizar datos
+                    const recentProducts = Array.isArray(data) ? data : (data.productos || []);
+
+                    container.innerHTML = ''; // Limpiar spinner
+
+                    if (recentProducts.length === 0) {
+                        container.innerHTML = '<div class="col-12 text-center"><p class="text-muted">No hay productos destacados disponibles.</p></div>';
+                        return;
+                    }
+
+                    recentProducts.forEach(product => {
+                        // Determinar imagen (placeholder si no hay)
+                        const imgUrl = product.url_imagen || 'https://via.placeholder.com/300x300?text=Sin+Imagen';
+
+                        const cardHtml = `
+                            <div class="col">
+                                <div class="card product-card h-100">
+                                    <div class="image-wrap">
+                                        <img src="${imgUrl}" class="card-img-top" alt="${product.nombre}" 
+                                             onerror="this.src='https://via.placeholder.com/300x300?text=Error+Imagen'">
+                                    </div>
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">${product.nombre}</h5>
+                                        <p class="card-text small text-muted">${product.descripcion || product.categoria || 'Producto fresco'}</p>
+                                        <p class="card-text text-success fw-semibold fs-5 mt-auto pt-2">S/ ${parseFloat(product.precio).toFixed(2)}</p>
+                                        <button class="btn btn-outline-success w-100 add-to-cart-btn"
+                                            data-product-id="${product.id}">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', cardHtml);
+                    });
+
+                    // Re-asignar eventos a los nuevos botones
+                    setupAddToCartButtons();
+
+                } catch (error) {
+                    console.error('Error loading featured products:', error);
+                    container.innerHTML = '<div class="col-12 text-center text-danger"><p>Error al cargar productos. Intente más tarde.</p></div>';
+                }
+            }
+
+            /**
+             * Actualiza el contador de productos en el carrito
+             */
+            const updateCartCount = () => {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountBadge.textContent = totalItems;
+            };
+
+            /**
+             * Guarda el carrito en localStorage y actualiza el contador
+             */
+            const saveCart = () => {
+                localStorage.setItem('aiMarketCart', JSON.stringify(cart));
+                updateCartCount();
+            };
+
+            /**
+             * Agrega un producto al carrito
+             * @param {string|number} productId - ID del producto a agregar
+             */
+            const addToCart = (productId) => {
+                // Buscar en allProducts
+                const product = allProducts.find(p => p.id == productId);
+
+                if (!product) {
+                    console.error('Producto no encontrado:', productId);
+                    return;
+                }
+
+                const existingProduct = cart.find(item => item.id == productId);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.nombre, // Usar 'nombre' del backend
+                        quantity: 1,
+                        price: parseFloat(product.precio),
+                        img: product.url_imagen,
+                        category: product.categoria
+                    });
+                }
+                saveCart();
+            };
+
+            // ===========================================
+            // EVENT LISTENERS
+            // ===========================================
+
+            // Funcionalidad de búsqueda - redirige al catálogo con término de búsqueda
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    window.location.href = `catalogo.html?search=${encodeURIComponent(searchTerm)}`;
+                }
+            });
+
+            // Configurar botones de agregar al carrito
+            function setupAddToCartButtons() {
+                const buttons = document.querySelectorAll('.add-to-cart-btn');
+                buttons.forEach(button => {
+                    // Remover listeners previos para evitar duplicados (clonando el nodo es una forma, pero aquí simple)
+                    const newBtn = button.cloneNode(true);
+                    button.parentNode.replaceChild(newBtn, button);
+
+                    newBtn.addEventListener('click', function () {
+                        const productId = this.dataset.productId;
+                        addToCart(productId);
+
+                        // Feedback visual temporal
+                        this.textContent = 'Agregado ✓';
+                        this.classList.remove('btn-outline-success');
+                        this.classList.add('btn-success');
+                        setTimeout(() => {
+                            this.textContent = 'Agregar al carrito';
+                            this.classList.remove('btn-success');
+                            this.classList.add('btn-outline-success');
+                        }, 1500);
+                    });
+                });
+            }
+
+            // ===========================================
+            // INICIALIZACIÓN
+            // ===========================================
+            updateCartCount(); // Actualiza el contador al cargar la página
+            loadFeaturedProducts(); // Cargar productos dinámicos
+
+            // Escuchar eventos de carga de productos desde la API
+            window.addEventListener('productsLoaded', function (event) {
+                console.log('🔄 Productos actualizados desde API en index...');
+                loadFeaturedProducts();
+            });
+        });
+    </script>
+</body>
+
+</html>

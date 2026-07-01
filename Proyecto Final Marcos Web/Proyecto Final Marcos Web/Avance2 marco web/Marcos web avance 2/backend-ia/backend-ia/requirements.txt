@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+psycopg2-binary
+# lightfm
+scipy
+numpy
+pandas
+python-multipart
+pydantic
+requests
+python-dotenv
+scikit-learn

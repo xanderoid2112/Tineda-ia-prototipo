@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Market - Catálogo de Productos</title>
+
+    <!-- Enlaces a librerías externas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <link href="css/catalogo.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- =========================================== -->
+    <!-- NAVBAR PRINCIPAL -->
+    <!-- =========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
+        <div class="container">
+            <!-- Logo de la empresa -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="d-inline-block bg-white text-success rounded-circle logo-circle">AI</span>
+                <span class="fw-bold text-white">AI Market</span>
+            </a>
+
+            <!-- Botones de navegación (solo visible en desktop) -->
+            <div class="d-none d-lg-flex ms-3 gap-2">
+                <a class="btn btn-outline-light btn-sm" href="catalogo.html">Catálogo</a>
+                <a class="btn btn-light btn-sm" href="canasta.html">Compras rápida</a>
+            </div>
+
+            <!-- Botón hamburguesa para móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-label="Menú de navegación" title="Menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Contenido colapsable del navbar -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Formulario de búsqueda -->
+                <form id="search-form" class="d-flex mx-lg-auto my-2 my-lg-0 w-100 search-form" role="search">
+                    <input id="search-input" class="form-control form-control-sm me-2" type="search"
+                        placeholder="Buscar productos">
+                    <button class="btn btn-success btn-sm" type="submit">Buscar</button>
+                </form>
+
+                <!-- Iconos de usuario y carrito -->
+                <div class="d-flex align-items-center ms-lg-3 mt-2 mt-lg-0 gap-3">
+                    <a href="administracion.html?force_login=true" class="text-white text-decoration-none"
+                        title="Panel de Administración"><i class="bi bi-person-circle fs-4"></i></a>
+                    <a href="carrito.html" class="text-white text-decoration-none position-relative"
+                        title="Ver Carrito">
+                        <i class="bi bi-cart3 fs-4"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================== -->
+    <!-- CONTENIDO PRINCIPAL DEL CATÁLOGO -->
+    <!-- =========================================== -->
+    <div class="container py-4 flex-grow-1">
+        <div class="row g-4">
+            <!-- =========================================== -->
+            <!-- BARRA LATERAL DE FILTROS -->
+            <!-- =========================================== -->
+            <div class="col-lg-3">
+                <!-- Tarjeta de filtros por categoría -->
+                <div class="card shadow-sm sticky-top" style="top: 100px;">
+                    <div class="card-header">
+                        <h5 class="mb-0">Categorías</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Lista de categorías para filtrar productos -->
+                        <ul class="nav flex-column" id="category-filter">
+                            <li class="nav-item"><a class="nav-link active" href="#" data-filter="all">Todas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =========================================== -->
+            <!-- ÁREA DE PRODUCTOS -->
+            <!-- =========================================== -->
+            <div class="col-lg-9">
+                <!-- Grid de productos (se renderiza dinámicamente) -->
+                <div id="catalog-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <!-- Los productos se renderizan aquí mediante JavaScript -->
+                </div>
+
+                <!-- Paginación -->
+                <nav class="mt-4 d-flex justify-content-center">
+                    <ul id="catalog-pagination" class="pagination">
+                        <!-- La paginación se renderiza aquí mediante JavaScript -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Mejorado -->
+    <footer class="bg-dark text-white mt-auto">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2"><span
+                            class="d-inline-block bg-white text-success rounded-circle"
+                            style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">AI</span>
+                        AI Market</h5>
+                    <p class="text-white-50 small">Tu supermercado inteligente. Ahorra tiempo y dinero con nuestras
+                        herramientas de compra y las mejores ofertas del mercado.</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Enlaces Rápidos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white-50 text-decoration-none">Catálogo</a>
+                        </li>
+                        <li class="mb-2"><a href="canasta.html" class="text-white-50 text-decoration-none">Compras
+                                Rápida</a></li>
+                        <li class="mb-2"><a href="carrito.html" class="text-white-50 text-decoration-none">Mi
+                                Carrito</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Ayuda y Soporte</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Políticas de Envío</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Términos y
+                                Condiciones</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Síguenos</h6>
+                    <div class="d-flex gap-2"><a href="#" class="footer-social-icon"><i
+                                class="bi bi-facebook"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-instagram"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-twitter-x"></i></a><a href="#" class="footer-social-icon"><i
+                                class="bi bi-tiktok"></i></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-black bg-opacity-25 py-3">
+            <div class="container text-center text-white-50 small">&copy; 2025 AI Market. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cart = JSON.parse(localStorage.getItem('aiMarketCart')) || [];
+            let currentPage = 1;
+
+            const catalogGrid = document.getElementById('catalog-grid');
+            const paginationContainer = document.getElementById('catalog-pagination');
+            const categoryLinks = document.querySelectorAll('#category-filter .nav-link');
+            const cartCountBadge = document.getElementById('cart-count');
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+            const categoryFilterList = document.getElementById('category-filter');
+            let availableCategories = window.catalogCategories || [];
+            let currentCategoryFilter = 'all';
+
+            const saveCart = () => {
+                localStorage.setItem('aiMarketCart', JSON.stringify(cart));
+                updateCartCount();
+            };
+
+            const updateCartCount = () => {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountBadge.textContent = totalItems;
+            };
+
+            const addToCart = (productName) => {
+                const product = productDatabase.find(p => p.name === productName);
+                if (!product) return;
+
+                const existingProduct = cart.find(item => item.name === productName);
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        quantity: 1,
+                        price: product.price,
+                        brand: product.brand,
+                        img: product.img,
+                        category: product.category,
+                        categoryName: product.categoryName
+                    });
+                }
+                saveCart();
+            };
+
+            const renderProducts = () => {
+                const categoryFilter = currentCategoryFilter;
+                const searchTerm = searchInput.value.toLowerCase();
+
+                const filteredProducts = productDatabase.filter(product => {
+                    const isCategoryMatch = categoryFilter === 'all' || product.category === categoryFilter;
+                    const isSearchMatch = product.name.toLowerCase().includes(searchTerm);
+                    return isCategoryMatch && isSearchMatch;
+                });
+
+                const paginatedProducts = filteredProducts;
+
+                catalogGrid.innerHTML = '';
+                if (paginatedProducts.length === 0) {
+                    catalogGrid.innerHTML = '<div class="col-12"><p class="text-center text-muted">No se encontraron productos que coincidan con tu búsqueda.</p></div>';
+                } else {
+                    paginatedProducts.forEach(product => {
+                        catalogGrid.innerHTML += `
+                            <div class="col">
+                                <div class="card product-card h-100">
+                                    <img src="${product.img}" class="card-img-top" alt="${product.name}">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title small">${product.name}</h5>
+                                        <p class="card-text text-success fw-semibold fs-5 mt-auto pt-2">S/ ${product.price.toFixed(2)}</p>
+                                        <button class="btn btn-outline-success w-100 add-to-cart-btn mt-2" data-product-name="${product.name}">Agregar</button>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
+                }
+                renderPagination(1);
+            };
+
+            const renderPagination = (totalPages) => {
+                paginationContainer.innerHTML = '';
+                const paginationNav = paginationContainer.closest('nav');
+                if (paginationNav) {
+                    paginationNav.classList.add('d-none');
+                }
+            };
+
+            const renderCategoryFilter = (categories = []) => {
+                if (!categoryFilterList) return;
+                const items = [
+                    { slug: 'all', nombre: 'Todas' },
+                    ...categories.map(cat => ({
+                        slug: cat.slug || cat.nombre?.toLowerCase().replace(/\s+/g, '-') || 'sin-categoria',
+                        nombre: cat.nombre || 'Sin categoría'
+                    }))
+                ];
+                let listHtml = '';
+                items.forEach(item => {
+                    const isActive = item.slug === currentCategoryFilter;
+                    listHtml += `
+                        <li class="nav-item">
+                            <a class="nav-link ${isActive ? 'active' : ''}" href="#" data-filter="${item.slug}">${item.nombre}</a>
+                        </li>
+                    `;
+                });
+                categoryFilterList.innerHTML = listHtml;
+            };
+
+            if (categoryFilterList) {
+                categoryFilterList.addEventListener('click', (e) => {
+                    const link = e.target.closest('.nav-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    currentCategoryFilter = link.dataset.filter || 'all';
+                    renderCategoryFilter(availableCategories);
+                    currentPage = 1;
+                    renderProducts();
+                });
+            }
+
+            searchForm.addEventListener('submit', (e) => e.preventDefault());
+            searchInput.addEventListener('input', () => { currentPage = 1; renderProducts(); });
+
+            paginationContainer.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (e.target.tagName === 'A' && !e.target.parentElement.classList.contains('disabled')) {
+                    currentPage = parseInt(e.target.dataset.page);
+                    renderProducts();
+                    window.scrollTo(0, 0);
+                }
+            });
+
+            catalogGrid.addEventListener('click', (e) => {
+                if (e.target.matches('.add-to-cart-btn')) {
+                    const productName = e.target.dataset.productName;
+                    addToCart(productName);
+                    e.target.textContent = 'Agregado ✓';
+                    e.target.classList.remove('btn-outline-success');
+                    e.target.classList.add('btn-success');
+                    setTimeout(() => {
+                        e.target.textContent = 'Agregar';
+                        e.target.classList.remove('btn-success');
+                        e.target.classList.add('btn-outline-success');
+                    }, 1500);
+                }
+            });
+
+            const initCatalog = () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchTermFromUrl = urlParams.get('search');
+                if (searchTermFromUrl) { searchInput.value = decodeURIComponent(searchTermFromUrl); }
+                updateCartCount();
+                renderProducts();
+            };
+
+            // Escuchar eventos de carga de productos desde la API
+            window.addEventListener('productsLoaded', function (event) {
+                console.log('🔄 Productos actualizados desde API, recargando catálogo...');
+                renderProducts();
+            });
+
+            window.addEventListener('categoriesLoaded', function (event) {
+                availableCategories = event.detail.categories || [];
+                if (!availableCategories.some(cat => cat.slug === currentCategoryFilter) && currentCategoryFilter !== 'all') {
+                    currentCategoryFilter = 'all';
+                }
+                renderCategoryFilter(availableCategories);
+                renderProducts();
+            });
+
+            renderCategoryFilter(availableCategories);
+
+            initCatalog();
+        });
+    </script>
+</body>
+
+</html>

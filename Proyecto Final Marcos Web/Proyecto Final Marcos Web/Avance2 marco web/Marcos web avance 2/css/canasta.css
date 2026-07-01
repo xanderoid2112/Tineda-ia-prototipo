@@ -1,0 +1,82 @@
+/* =========================================== */
+/* CONFIGURACIÓN BASE */
+/* =========================================== */
+
+/* Variables CSS */
+:root { --ai-green: #28a745; }
+
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+/* Tipografía base */
+body { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; letter-spacing: .1px; }
+h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: .2px; }
+.card-title { font-weight: 600; }
+
+/* =========================================== */
+/* NAVBAR */
+/* =========================================== */
+.navbar { background-color: #28a745; }
+.navbar .navbar-brand { color: #ffffff; }
+.navbar .nav-link, .navbar .btn-outline-success { color: #ffffff; border-color: #ffffff; }
+.navbar .btn-outline-success:hover { background-color: #ffffff; color: #28a745; }
+.navbar .btn.btn-success { background-color: #1f8c39; border-color: #1f8c39; }
+.navbar .form-control { background-color: #ffffff; color: #212529; }
+
+/* =========================================== */
+/* FORMULARIOS Y TARJETAS */
+/* =========================================== */
+.card { border-radius: 14px; }
+.card .form-control, .card .form-select { border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04) inset; }
+
+/* =========================================== */
+/* BOTONES */
+/* =========================================== */
+.btn-success { background-color: var(--ai-green); border-color: var(--ai-green); }
+.btn-success:hover { filter: brightness(0.95); }
+
+/* =========================================== */
+/* TARJETAS DE PRODUCTOS */
+/* =========================================== */
+.product-card { border-radius: 14px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.06); transition: transform .2s ease, box-shadow .2s ease; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
+.product-card .card-img-top { object-fit: contain; height: 160px; background: #f8f9fa; }
+
+/* =========================================== */
+/* CAJA DE RESUMEN */
+/* =========================================== */
+.summary-box { border: 1px solid #e9ecef; }
+.summary-box h4 { color: var(--ai-green); }
+
+/* =========================================== */
+/* CONTENEDOR DEL GRÁFICO */
+/* =========================================== */
+.chart-wrapper { max-width: 400px; height: 400px; position: relative; }
+@media (max-width: 575.98px) { .chart-wrapper { max-width: 100%; height: 300px; } }
+
+/* =========================================== */
+/* FOOTER */
+/* =========================================== */
+footer { background-color: #28a745 !important; color: #ffffff !important; border-top: 1px solid rgba(255,255,255,0.25); }
+footer h6 { color: #ffffff; }
+footer .text-white-50 { color: rgba(255,255,255,0.85) !important; }
+footer a { color: #ffffff !important; opacity: 0.95; }
+footer a:hover { opacity: 1; text-decoration: underline; }
+
+/* =========================================== */
+/* IMÁGENES EN TARJETAS DE PRODUCTOS */
+/* =========================================== */
+.product-card .image-wrap { background: #f6f8f7; height: 200px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.product-card .image-wrap img { max-height: 90%; width: auto; object-fit: contain; transition: transform .2s ease; border-radius: 8px; }
+.product-card:hover .image-wrap img { transform: scale(1.03); }
+.product-card { border: 1px solid #e6f3ea; }
+
+/* =========================================== */
+/* LISTA DE RESUMEN DE CANASTA */
+/* =========================================== */
+#summary-list {
+    max-height: 400px; /* Altura máxima antes de que aparezca el scroll */
+    overflow-y: auto;  /* Añade un scroll vertical solo cuando es necesario */
+}
+
+
